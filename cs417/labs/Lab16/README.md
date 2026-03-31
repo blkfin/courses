@@ -40,18 +40,13 @@ A **graph** is a set of **nodes** (also called vertices) connected by **edges**.
 Here's a small graph:
 
 ```
-    A
-   / \
-  B   C
-  |   |
-  D   E
-   \ /
-    F
+  X --- Y
+   \   /
+    \ /
+     Z
 ```
 
-Six nodes, six edges: A-B, A-C, B-D, C-E, D-F, E-F.
-
-Notice that D and E both connect to F — that's a **diamond**. There are multiple paths from A to F. In a tree, there's always exactly one path between any two nodes. In a graph, there can be many.
+Three nodes, three edges: X-Y, X-Z, Y-Z. Notice that unlike a tree, there's a cycle — you can go X → Y → Z → X and end up back where you started.
 
 ### Adjacency Lists
 
@@ -59,16 +54,13 @@ The most common way to represent a graph in code is an **adjacency list**: for e
 
 ```python
 {
-    "A": ["B", "C"],
-    "B": ["A", "D"],
-    "C": ["A", "E"],
-    "D": ["B", "F"],
-    "E": ["C", "F"],
-    "F": ["D", "E"],
+    "X": ["Y", "Z"],
+    "Y": ["X", "Z"],
+    "Z": ["X", "Y"],
 }
 ```
 
-This is an **undirected** graph — if A connects to B, then B connects to A. Every edge appears twice in the adjacency list.
+This is an **undirected** graph — if X connects to Y, then Y connects to X. Every edge appears twice in the adjacency list.
 
 You'll use a `Graph` class that manages this for you. It handles adding nodes, adding edges (in both directions), and looking up neighbors. Your job isn't to build the data structure — it's to *traverse* it.
 
