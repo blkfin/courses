@@ -114,6 +114,8 @@ Import-Csv .\windows_events.csv |
     }
 ```
 
+> **Running PowerShell from Bash?** If you invoke this with `pwsh -Command "..."` from a Bash shell, wrap the script in **single quotes** so Bash doesn't try to expand `$_`. Either run from a PowerShell prompt directly, or do `pwsh -Command '...'`.
+
 Why PowerShell? CSV is a *table of records*. PowerShell's object pipeline lets you filter by named field without writing a parser. `Import-Csv` gives you objects; `Where-Object` filters them. Try doing this in plain `grep` and you'll quickly write a half-baked CSV parser instead.
 
 ---
